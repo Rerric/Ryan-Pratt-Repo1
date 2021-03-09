@@ -34,7 +34,7 @@ public class Enemy2 : MonoBehaviour
         if (isdead == true)
         {
             count += 1;
-            if (count == 90)
+            if (count == 45)
             {
                 rb.useGravity = true;
                 transform.Rotate(0, 0, 180);

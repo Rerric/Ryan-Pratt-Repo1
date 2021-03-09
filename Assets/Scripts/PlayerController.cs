@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     {
         power = 0;
         apower = 0;
-        delay = 120;
+        delay = 60;
         p_sprite = gameObject.GetComponent<SpriteRenderer>();
     }
 
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (delay == 0)
                 {
-                    power += 2;
+                    power += 500 * Time.deltaTime;
                 }
             }
         }
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
                 Instantiate(projectilePrefab, transform.position, transform.rotation);
                 apower = power;
                 power = 0;
-                delay = 120;
+                delay = 60;
                 p_sprite.sprite = sprite4;
             }
         }
