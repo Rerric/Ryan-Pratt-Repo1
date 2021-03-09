@@ -9,6 +9,8 @@ public class Enemy2 : MonoBehaviour
     private Animator anim;
     private Rigidbody rb;
     private BoxCollider bc;
+    private LivesMeter lmscript;
+    bool through = false;
     bool isdead = false;
     int count = 0;
 
@@ -18,6 +20,7 @@ public class Enemy2 : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         bc = GetComponent<BoxCollider>();
+        lmscript = GameObject.Find("Lives Meter").GetComponent<LivesMeter>();
     }
 
     // Update is called once per frame
@@ -43,9 +46,18 @@ public class Enemy2 : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (transform.position.x < -1.5)
+        if (transform.position.x < -3.5)
         {
-            Debug.Log("Game Over!");
+            Destroy(gameObject);
+        }
+
+        if (transform.position.x < -3.0)
+        {
+            if (through == false)
+            { 
+                lmscript.lives -= 1;
+            }
+            through = true;
         }
     }
 

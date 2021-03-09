@@ -7,6 +7,8 @@ public class Enemy1 : MonoBehaviour
     public float speed;
     private Animator anim;
     private BoxCollider bc;
+    private LivesMeter lmscript;
+    bool through = false;
     bool isdead = false;
 
     // Start is called before the first frame update
@@ -14,6 +16,7 @@ public class Enemy1 : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         bc = GetComponent<BoxCollider>();
+        lmscript = GameObject.Find("Lives Meter").GetComponent<LivesMeter>();
     }
 
     // Update is called once per frame
@@ -24,9 +27,18 @@ public class Enemy1 : MonoBehaviour
             transform.Translate(Vector3.left * speed * Time.deltaTime);
         }
 
-        if (transform.position.x == -1.5)
+        if (transform.position.x < -3.5)
         {
-            Debug.Log("Game Over!");
+            Destroy(gameObject);
+        }
+
+        if (transform.position.x < -3.0)
+        {
+            if (through == false)
+            {
+                lmscript.lives -= 1;
+            }
+            through = true;
         }
     }
 
